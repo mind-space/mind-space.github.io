@@ -6,6 +6,8 @@ let renderer;
 let scene;
 let refractorySkybox;
 const mixers = [];
+let PointerLockControls;
+let HTMLDOMElement;
 
 function init() {
 
@@ -24,6 +26,97 @@ function init() {
     update();
     render();
   });
+  controls = new THREE.PointerLockControls( camera, document.body, HTMLDOMElement );
+
+				const blocker = document.getElementById( 'blocker' );
+				const instructions = document.getElementById( 'instructions' );
+
+				instructions.addEventListener( 'click', function () {
+
+					controls.lock();
+
+				}, false );
+
+				controls.addEventListener( 'lock', function () {
+
+					instructions.style.display = 'none';
+					blocker.style.display = 'none';
+
+				} );
+
+				controls.addEventListener( 'unlock', function () {
+
+					blocker.style.display = 'block';
+					instructions.style.display = '';
+
+				} );
+
+				scene.add( controls.getObject() );
+
+				const onKeyDown = function ( event ) {
+
+					switch ( event.keyCode ) {
+
+						case 38: // up
+						case 87: // w
+							moveForward = true;
+							break;
+
+						case 37: // left
+						case 65: // a
+							moveLeft = true;
+							break;
+
+						case 40: // down
+						case 83: // s
+							moveBackward = true;
+							break;
+
+						case 39: // right
+						case 68: // d
+							moveRight = true;
+							break;
+
+						case 32: // space
+							if ( canJump === true ) velocity.y += 350;
+							canJump = false;
+							break;
+
+					}
+
+				};
+
+				const onKeyUp = function ( event ) {
+
+					switch ( event.keyCode ) {
+
+						case 38: // up
+						case 87: // w
+							moveForward = false;
+							break;
+
+						case 37: // left
+						case 65: // a
+							moveLeft = false;
+							break;
+
+						case 40: // down
+						case 83: // s
+							moveBackward = false;
+							break;
+
+						case 39: // right
+						case 68: // d
+							moveRight = false;
+							break;
+
+					}
+
+				};
+
+				document.addEventListener( 'keydown', onKeyDown, false );
+				document.addEventListener( 'keyup', onKeyUp, false );
+
 }
 
 function createSkybox() {
@@ -42,6 +135,8 @@ function createSkybox() {
 
   scene.background = skyboxTexture;
 }
+
+
 
 function createCamera() {
   camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 1, 500);
@@ -120,7 +215,7 @@ function createGrass() {
   });
 
   const mesh = new THREE.Mesh(geometry, material);
-  mesh.rotation.x = - Math.PI / 2.2;
+  mesh.rotation.x = - Math.PI / 2;
   mesh.position.y = 0;
   mesh.receiveShadow = true;
   scene.add(mesh);
