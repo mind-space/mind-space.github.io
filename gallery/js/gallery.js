@@ -20,6 +20,9 @@ function init() {
   createSkybox();
   loadGallery();
   createGrass();
+  createChrisDoor();
+  createNikitaDoor();
+
   createRenderer();
 
   renderer.setAnimationLoop(() => {
@@ -119,6 +122,9 @@ function init() {
 
 }
 
+
+
+
 function createSkybox() {
   const skyboxTexture = new THREE.CubeTextureLoader()
     .setPath("js/three.js-master/examples/textures/cube/MilkyWay/")
@@ -167,6 +173,8 @@ function loadGallery() {
 
     const model = gltf.scene.children[0];
     model.position.copy(position);
+
+    // model.rotation.y = (45);
 
     const mixer = new THREE.AnimationMixer(model);
     mixers.push(mixer);
@@ -221,6 +229,509 @@ function createGrass() {
   scene.add(mesh);
 }
 
+function createChrisDoor() {
+  const geometry = new THREE.PlaneBufferGeometry(16, 49, 0, 0);
+  const textureLoader = new THREE.TextureLoader();
+  const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
+    texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+  });
+  // texture.repeat.set(5, 5);
+  texture.encoding = THREE.sRGBEncoding;
+  texture.anisotropy = 16;
+
+  const material = new THREE.MeshStandardMaterial({
+    map: texture,
+    bumpMap: texture,
+    // bumpScale: 5,
+  });
+
+  const mesh = new THREE.Mesh(geometry, material);
+
+  //change these values to get the door to appear in the correct space
+  mesh.rotation.y =  160;
+  mesh.position.x = -66;
+  mesh.position.y = 9;
+  mesh.position.z = 86;
+  //don't change anything else!
+  
+  mesh.receiveShadow = true;
+  scene.add(mesh);
+}
+
+function createChrisDoor2() {
+  const geometry = new THREE.PlaneBufferGeometry(16, 49, 0, 0);
+  const textureLoader = new THREE.TextureLoader();
+  const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
+    texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+  });
+  // texture.repeat.set(5, 5);
+  texture.encoding = THREE.sRGBEncoding;
+  texture.anisotropy = 16;
+
+  const material = new THREE.MeshStandardMaterial({
+    map: texture,
+    bumpMap: texture,
+    // bumpScale: 5,
+  });
+
+  const mesh = new THREE.Mesh(geometry, material);
+
+  //change these values to get the door to appear in the correct space
+  mesh.rotation.y =  160;
+  mesh.position.x = -66;
+  mesh.position.y = 9;
+  mesh.position.z = 86;
+  //don't change anything else!
+  
+  mesh.receiveShadow = true;
+  scene.add(mesh);
+}
+
+
+function createChrisDoor3() {
+  const geometry = new THREE.PlaneBufferGeometry(16, 49, 0, 0);
+  const textureLoader = new THREE.TextureLoader();
+  const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
+    texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+  });
+  // texture.repeat.set(5, 5);
+  texture.encoding = THREE.sRGBEncoding;
+  texture.anisotropy = 16;
+
+  const material = new THREE.MeshStandardMaterial({
+    map: texture,
+    bumpMap: texture,
+    // bumpScale: 5,
+  });
+
+  const mesh = new THREE.Mesh(geometry, material);
+
+  //change these values to get the door to appear in the correct space
+  mesh.rotation.y =  160;
+  mesh.position.x = -66;
+  mesh.position.y = 9;
+  mesh.position.z = 86;
+  //don't change anything else!
+  
+  mesh.receiveShadow = true;
+  scene.add(mesh);
+}
+
+function createSoumyaDoor() {
+  const geometry = new THREE.PlaneBufferGeometry(16, 49, 0, 0);
+  const textureLoader = new THREE.TextureLoader();
+  const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
+    texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+  });
+  // texture.repeat.set(5, 5);
+  texture.encoding = THREE.sRGBEncoding;
+  texture.anisotropy = 16;
+
+  const material = new THREE.MeshStandardMaterial({
+    map: texture,
+    bumpMap: texture,
+    // bumpScale: 5,
+  });
+
+  const mesh = new THREE.Mesh(geometry, material);
+
+  //change these values to get the door to appear in the correct space
+  mesh.rotation.y =  160;
+  mesh.position.x = -66;
+  mesh.position.y = 9;
+  mesh.position.z = 86;
+  //don't change anything else!
+  
+  mesh.receiveShadow = true;
+  scene.add(mesh);
+}
+
+function createSoumyaDoor2() {
+  const geometry = new THREE.PlaneBufferGeometry(16, 49, 0, 0);
+  const textureLoader = new THREE.TextureLoader();
+  const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
+    texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+  });
+  // texture.repeat.set(5, 5);
+  texture.encoding = THREE.sRGBEncoding;
+  texture.anisotropy = 16;
+
+  const material = new THREE.MeshStandardMaterial({
+    map: texture,
+    bumpMap: texture,
+    // bumpScale: 5,
+  });
+
+  const mesh = new THREE.Mesh(geometry, material);
+
+  //change these values to get the door to appear in the correct space
+  mesh.rotation.y =  160;
+  mesh.position.x = -66;
+  mesh.position.y = 9;
+  mesh.position.z = 86;
+  //don't change anything else!
+  
+  mesh.receiveShadow = true;
+  scene.add(mesh);
+}
+
+function createSoumyaDoor3() {
+  const geometry = new THREE.PlaneBufferGeometry(16, 49, 0, 0);
+  const textureLoader = new THREE.TextureLoader();
+  const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
+    texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+  });
+  // texture.repeat.set(5, 5);
+  texture.encoding = THREE.sRGBEncoding;
+  texture.anisotropy = 16;
+
+  const material = new THREE.MeshStandardMaterial({
+    map: texture,
+    bumpMap: texture,
+    // bumpScale: 5,
+  });
+
+  const mesh = new THREE.Mesh(geometry, material);
+
+  //change these values to get the door to appear in the correct space
+  mesh.rotation.y =  160;
+  mesh.position.x = -66;
+  mesh.position.y = 9;
+  mesh.position.z = 86;
+  //don't change anything else!
+  
+  mesh.receiveShadow = true;
+  scene.add(mesh);
+}
+
+function createJonathanDoor() {
+  const geometry = new THREE.PlaneBufferGeometry(16, 49, 0, 0);
+  const textureLoader = new THREE.TextureLoader();
+  const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
+    texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+  });
+  // texture.repeat.set(5, 5);
+  texture.encoding = THREE.sRGBEncoding;
+  texture.anisotropy = 16;
+
+  const material = new THREE.MeshStandardMaterial({
+    map: texture,
+    bumpMap: texture,
+    // bumpScale: 5,
+  });
+
+  const mesh = new THREE.Mesh(geometry, material);
+
+  //change these values to get the door to appear in the correct space
+  mesh.rotation.y =  160;
+  mesh.position.x = -66;
+  mesh.position.y = 9;
+  mesh.position.z = 86;
+  //don't change anything else!
+  
+  mesh.receiveShadow = true;
+  scene.add(mesh);
+}
+
+function createJonathanDoor2() {
+  const geometry = new THREE.PlaneBufferGeometry(16, 49, 0, 0);
+  const textureLoader = new THREE.TextureLoader();
+  const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
+    texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+  });
+  // texture.repeat.set(5, 5);
+  texture.encoding = THREE.sRGBEncoding;
+  texture.anisotropy = 16;
+
+  const material = new THREE.MeshStandardMaterial({
+    map: texture,
+    bumpMap: texture,
+    // bumpScale: 5,
+  });
+
+  const mesh = new THREE.Mesh(geometry, material);
+
+  //change these values to get the door to appear in the correct space
+  mesh.rotation.y =  160;
+  mesh.position.x = -66;
+  mesh.position.y = 9;
+  mesh.position.z = 86;
+  //don't change anything else!
+  
+  mesh.receiveShadow = true;
+  scene.add(mesh);
+}
+
+function createJonathanDoor3() {
+  const geometry = new THREE.PlaneBufferGeometry(16, 49, 0, 0);
+  const textureLoader = new THREE.TextureLoader();
+  const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
+    texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+  });
+  // texture.repeat.set(5, 5);
+  texture.encoding = THREE.sRGBEncoding;
+  texture.anisotropy = 16;
+
+  const material = new THREE.MeshStandardMaterial({
+    map: texture,
+    bumpMap: texture,
+    // bumpScale: 5,
+  });
+
+  const mesh = new THREE.Mesh(geometry, material);
+
+  //change these values to get the door to appear in the correct space
+  mesh.rotation.y =  160;
+  mesh.position.x = -66;
+  mesh.position.y = 9;
+  mesh.position.z = 86;
+  //don't change anything else!
+  
+  mesh.receiveShadow = true;
+  scene.add(mesh);
+}
+
+function createNikitaDoor() {
+  const geometry = new THREE.PlaneBufferGeometry(16, 28, 0, 0);
+  const textureLoader = new THREE.TextureLoader();
+  const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
+    texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+  });
+  // texture.repeat.set(5, 5);
+  texture.encoding = THREE.sRGBEncoding;
+  texture.anisotropy = 16;
+
+  const material = new THREE.MeshStandardMaterial({
+    map: texture,
+    bumpMap: texture,
+    // bumpScale: 5,
+  });
+
+  const mesh = new THREE.Mesh(geometry, material);
+  mesh.rotation.y =  160;
+
+  mesh.position.x = -56;
+  mesh.position.y = 9;
+  mesh.position.z = 86;
+  mesh.receiveShadow = true;
+  scene.add(mesh);
+}
+function createNikitaDoor2() {
+  const geometry = new THREE.PlaneBufferGeometry(16, 28, 0, 0);
+  const textureLoader = new THREE.TextureLoader();
+  const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
+    texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+  });
+  // texture.repeat.set(5, 5);
+  texture.encoding = THREE.sRGBEncoding;
+  texture.anisotropy = 16;
+
+  const material = new THREE.MeshStandardMaterial({
+    map: texture,
+    bumpMap: texture,
+    // bumpScale: 5,
+  });
+
+  const mesh = new THREE.Mesh(geometry, material);
+  mesh.rotation.y =  160;
+
+  mesh.position.x = -56;
+  mesh.position.y = 9;
+  mesh.position.z = 86;
+  mesh.receiveShadow = true;
+  scene.add(mesh);
+}
+function createNikitaDoor3() {
+  const geometry = new THREE.PlaneBufferGeometry(16, 28, 0, 0);
+  const textureLoader = new THREE.TextureLoader();
+  const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
+    texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+  });
+  // texture.repeat.set(5, 5);
+  texture.encoding = THREE.sRGBEncoding;
+  texture.anisotropy = 16;
+
+  const material = new THREE.MeshStandardMaterial({
+    map: texture,
+    bumpMap: texture,
+    // bumpScale: 5,
+  });
+
+  const mesh = new THREE.Mesh(geometry, material);
+  mesh.rotation.y =  160;
+
+  mesh.position.x = -56;
+  mesh.position.y = 9;
+  mesh.position.z = 86;
+  mesh.receiveShadow = true;
+  scene.add(mesh);
+}
+
+function createFengpingDoor() {
+  const geometry = new THREE.PlaneBufferGeometry(16, 28, 0, 0);
+  const textureLoader = new THREE.TextureLoader();
+  const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
+    texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+  });
+  // texture.repeat.set(5, 5);
+  texture.encoding = THREE.sRGBEncoding;
+  texture.anisotropy = 16;
+
+  const material = new THREE.MeshStandardMaterial({
+    map: texture,
+    bumpMap: texture,
+    // bumpScale: 5,
+  });
+
+  const mesh = new THREE.Mesh(geometry, material);
+  mesh.rotation.y =  160;
+
+  mesh.position.x = -56;
+  mesh.position.y = 9;
+  mesh.position.z = 86;
+  mesh.receiveShadow = true;
+  scene.add(mesh);
+}
+
+function createFengpingDoor2() {
+  const geometry = new THREE.PlaneBufferGeometry(16, 28, 0, 0);
+  const textureLoader = new THREE.TextureLoader();
+  const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
+    texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+  });
+  // texture.repeat.set(5, 5);
+  texture.encoding = THREE.sRGBEncoding;
+  texture.anisotropy = 16;
+
+  const material = new THREE.MeshStandardMaterial({
+    map: texture,
+    bumpMap: texture,
+    // bumpScale: 5,
+  });
+
+  const mesh = new THREE.Mesh(geometry, material);
+  mesh.rotation.y =  160;
+
+  mesh.position.x = -56;
+  mesh.position.y = 9;
+  mesh.position.z = 86;
+  mesh.receiveShadow = true;
+  scene.add(mesh);
+}
+
+function createFengpingDoor3() {
+  const geometry = new THREE.PlaneBufferGeometry(16, 28, 0, 0);
+  const textureLoader = new THREE.TextureLoader();
+  const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
+    texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+  });
+  // texture.repeat.set(5, 5);
+  texture.encoding = THREE.sRGBEncoding;
+  texture.anisotropy = 16;
+
+  const material = new THREE.MeshStandardMaterial({
+    map: texture,
+    bumpMap: texture,
+    // bumpScale: 5,
+  });
+
+  const mesh = new THREE.Mesh(geometry, material);
+  mesh.rotation.y =  160;
+
+  mesh.position.x = -56;
+  mesh.position.y = 9;
+  mesh.position.z = 86;
+  mesh.receiveShadow = true;
+  scene.add(mesh);
+}
+
+
+function createCharmiDoor() {
+  const geometry = new THREE.PlaneBufferGeometry(16, 28, 0, 0);
+  const textureLoader = new THREE.TextureLoader();
+  const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
+    texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+  });
+  // texture.repeat.set(5, 5);
+  texture.encoding = THREE.sRGBEncoding;
+  texture.anisotropy = 16;
+
+  const material = new THREE.MeshStandardMaterial({
+    map: texture,
+    bumpMap: texture,
+    // bumpScale: 5,
+  });
+
+  const mesh = new THREE.Mesh(geometry, material);
+  mesh.rotation.y =  160;
+
+  mesh.position.x = -56;
+  mesh.position.y = 9;
+  mesh.position.z = 86;
+  mesh.receiveShadow = true;
+  scene.add(mesh);
+}
+
+function createCharmiDoor2() {
+  const geometry = new THREE.PlaneBufferGeometry(16, 28, 0, 0);
+  const textureLoader = new THREE.TextureLoader();
+  const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
+    texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+  });
+  // texture.repeat.set(5, 5);
+  texture.encoding = THREE.sRGBEncoding;
+  texture.anisotropy = 16;
+
+  const material = new THREE.MeshStandardMaterial({
+    map: texture,
+    bumpMap: texture,
+    // bumpScale: 5,
+  });
+
+  const mesh = new THREE.Mesh(geometry, material);
+  mesh.rotation.y =  160;
+
+  mesh.position.x = -56;
+  mesh.position.y = 9;
+  mesh.position.z = 86;
+  mesh.receiveShadow = true;
+  scene.add(mesh);
+}
+
+function createCharmiDoor3() {
+  const geometry = new THREE.PlaneBufferGeometry(16, 28, 0, 0);
+  const textureLoader = new THREE.TextureLoader();
+  const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
+    texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+  });
+  // texture.repeat.set(5, 5);
+  texture.encoding = THREE.sRGBEncoding;
+  texture.anisotropy = 16;
+
+  const material = new THREE.MeshStandardMaterial({
+    map: texture,
+    bumpMap: texture,
+    // bumpScale: 5,
+  });
+
+  const mesh = new THREE.Mesh(geometry, material);
+  mesh.rotation.y =  160;
+
+  mesh.position.x = -56;
+  mesh.position.y = 9;
+  mesh.position.z = 86;
+  mesh.receiveShadow = true;
+  scene.add(mesh);
+}
+
+
+// function addDoors() {
+//   const geometry = new THREE.PlaneGeometry( 5, 20, 32 );
+//   const material = new THREE.MeshBasicMaterial( {color: 0xffff00, side: THREE.DoubleSide} );
+//   const plane = new THREE.Mesh( geometry, material );
+//   scene.add( plane );
+// }
+
 function createRenderer() {
 
   // create a WebGLRenderer and set its width and height
@@ -247,6 +758,9 @@ function update() {
 
 function render() {
   renderer.render(scene, camera);
+
+  // console.log(camera.position);
+  console.log(camera.rotation);
 }
 
 function onWindowResize() {
