@@ -152,8 +152,8 @@ function createSkybox() {
 
 function createCamera() {
   camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 1, 500);
-  // camera.position.set(-9, 13, 40);
-  camera.position.set(81, 163, -121);
+  camera.position.set(-9, 13, 40);
+
 }
 
 function createControls() {
@@ -643,9 +643,9 @@ function createFengpingDoor3() {
   const mesh = new THREE.Mesh(geometry, material);
   mesh.rotation.y =  -0.5;
 
-  mesh.position.x = 105;
-  mesh.position.y = 20;
-  mesh.position.z = -20;
+  mesh.position.x = 110;
+  mesh.position.y = 18;
+  mesh.position.z = -25;
   mesh.receiveShadow = true;
   scene.add(mesh);
 }
@@ -764,7 +764,7 @@ function update() {
 function render() {
   renderer.render(scene, camera);
 
-  console.log(camera.position);
+  // console.log(camera.position);
   // console.log(camera.rotation);
 }
 
