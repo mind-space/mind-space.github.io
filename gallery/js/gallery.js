@@ -21,6 +21,9 @@ function init() {
   loadGallery();
   createGrass();
   createChrisDoor();
+  createSoumyaDoor();
+  createSoumyaDoor2();
+  createSoumyaDoor3();
   createNikitaDoor();
 
   createRenderer();
@@ -253,7 +256,7 @@ function createChrisDoor() {
   mesh.position.y = 9;
   mesh.position.z = 86;
   //don't change anything else!
-  
+
   mesh.receiveShadow = true;
   scene.add(mesh);
 }
@@ -282,7 +285,7 @@ function createChrisDoor2() {
   mesh.position.y = 9;
   mesh.position.z = 86;
   //don't change anything else!
-  
+
   mesh.receiveShadow = true;
   scene.add(mesh);
 }
@@ -312,13 +315,13 @@ function createChrisDoor3() {
   mesh.position.y = 9;
   mesh.position.z = 86;
   //don't change anything else!
-  
+
   mesh.receiveShadow = true;
   scene.add(mesh);
 }
 
 function createSoumyaDoor() {
-  const geometry = new THREE.PlaneBufferGeometry(16, 49, 0, 0);
+  const geometry = new THREE.PlaneBufferGeometry(27, 30, 0, 0);
   const textureLoader = new THREE.TextureLoader();
   const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
@@ -336,18 +339,18 @@ function createSoumyaDoor() {
   const mesh = new THREE.Mesh(geometry, material);
 
   //change these values to get the door to appear in the correct space
-  mesh.rotation.y =  160;
-  mesh.position.x = -66;
-  mesh.position.y = 9;
-  mesh.position.z = 86;
+  mesh.rotation.y =  90;
+  mesh.position.x = -110;
+  mesh.position.y = 20;
+  mesh.position.z = -20;
   //don't change anything else!
-  
+
   mesh.receiveShadow = true;
   scene.add(mesh);
 }
 
 function createSoumyaDoor2() {
-  const geometry = new THREE.PlaneBufferGeometry(16, 49, 0, 0);
+  const geometry = new THREE.PlaneBufferGeometry(27, 30, 0, 0);
   const textureLoader = new THREE.TextureLoader();
   const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
@@ -365,18 +368,18 @@ function createSoumyaDoor2() {
   const mesh = new THREE.Mesh(geometry, material);
 
   //change these values to get the door to appear in the correct space
-  mesh.rotation.y =  160;
-  mesh.position.x = -66;
-  mesh.position.y = 9;
-  mesh.position.z = 86;
+  mesh.rotation.y =  120;
+  mesh.position.x = -100;
+  mesh.position.y = 20;
+  mesh.position.z = -57;
   //don't change anything else!
-  
+
   mesh.receiveShadow = true;
   scene.add(mesh);
 }
 
 function createSoumyaDoor3() {
-  const geometry = new THREE.PlaneBufferGeometry(16, 49, 0, 0);
+  const geometry = new THREE.PlaneBufferGeometry(27, 30, 0, 0);
   const textureLoader = new THREE.TextureLoader();
   const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
@@ -394,12 +397,12 @@ function createSoumyaDoor3() {
   const mesh = new THREE.Mesh(geometry, material);
 
   //change these values to get the door to appear in the correct space
-  mesh.rotation.y =  160;
-  mesh.position.x = -66;
-  mesh.position.y = 9;
-  mesh.position.z = 86;
+  mesh.rotation.y =  221;
+  mesh.position.x = -76;
+  mesh.position.y = 20;
+  mesh.position.z = -86;
   //don't change anything else!
-  
+
   mesh.receiveShadow = true;
   scene.add(mesh);
 }
@@ -428,7 +431,7 @@ function createJonathanDoor() {
   mesh.position.y = 9;
   mesh.position.z = 86;
   //don't change anything else!
-  
+
   mesh.receiveShadow = true;
   scene.add(mesh);
 }
@@ -457,7 +460,7 @@ function createJonathanDoor2() {
   mesh.position.y = 9;
   mesh.position.z = 86;
   //don't change anything else!
-  
+
   mesh.receiveShadow = true;
   scene.add(mesh);
 }
@@ -486,7 +489,7 @@ function createJonathanDoor3() {
   mesh.position.y = 9;
   mesh.position.z = 86;
   //don't change anything else!
-  
+
   mesh.receiveShadow = true;
   scene.add(mesh);
 }
