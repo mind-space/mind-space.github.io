@@ -836,7 +836,7 @@ function createClaireDoor() {
 function createDanDoor() {
   const geometry = new THREE.PlaneBufferGeometry(25, 49, 0, 0);
   const textureLoader = new THREE.TextureLoader();
-  const texture = textureLoader.load('gallery/textures/ChrisTexture.png', function (texture) {
+  const texture = textureLoader.load('gallery/textures/danfinalss-01.jpeg', function (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
   });
   // texture.repeat.set(5, 5);
