@@ -185,7 +185,7 @@ function init() {
 
 function createSkybox() {
   const skyboxTexture = new THREE.CubeTextureLoader()
-      .setPath("js/three.js-master/examples/textures/cube/MilkyWay/")
+      .setPath("gallery/js/three.js-master/examples/textures/cube/MilkyWay/")
       .load(['dark-s_px.jpg', 'dark-s_nx.jpg', 'dark-s_py.jpg', 'dark-s_ny.jpg', 'dark-s_pz.jpg', 'dark-s_nz.jpg']);
       // .setPath("js/three.js-master/examples/textures/cube/skyboxsun25deg")
       // .load(['px.jpg', 'nx.jpg', 'py.jpg', 'ny.jpg', 'pz.jpg', 'nz.jpg']);
@@ -258,13 +258,13 @@ function loadGallery() {
   // load the first model. Each model is loaded asynchronously,
   // so don't make any assumption about which one will finish loading first
   const position = new THREE.Vector3(-9, 0, -10);
-  loader.load('models/seehalfthepicturegallery.gltf', gltf => onLoad(gltf, position, refractorySkybox), onProgress, onError);
+  loader.load('gallery/models/seehalfthepicturegallery.gltf', gltf => onLoad(gltf, position, refractorySkybox), onProgress, onError);
 }
 
 function createGrass() {
   const geometry = new THREE.CircleBufferGeometry(240, 240);
   const textureLoader = new THREE.TextureLoader();
-  const texture = textureLoader.load('textures/grasslight-big.jpg', function (texture) {
+  const texture = textureLoader.load('gallery/textures/grasslight-big.jpg', function (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
   });
   texture.repeat.set(5, 5);
@@ -287,7 +287,7 @@ function createGrass() {
 function createChrisDoor() {
   const geometry = new THREE.PlaneBufferGeometry(23, 35, 0, 0);
   const textureLoader = new THREE.TextureLoader();
-  const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
+  const texture = textureLoader.load('gallery/textures/ChrisTexture.png', function (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
   });
   // texture.repeat.set(5, 5);
@@ -316,7 +316,7 @@ function createChrisDoor() {
 function createJayDoor() {
   const geometry = new THREE.PlaneBufferGeometry(19, 35, 0, 0);
   const textureLoader = new THREE.TextureLoader();
-  const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
+  const texture = textureLoader.load('gallery/textures/ChrisTexture.png', function (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
   });
   texture.encoding = THREE.sRGBEncoding;
@@ -345,7 +345,7 @@ function createJayDoor() {
 function createJessicaDoor() {
   const geometry = new THREE.PlaneBufferGeometry(20, 33, 0, 0);
   const textureLoader = new THREE.TextureLoader();
-  const texture = textureLoader.load('textures/Jessica.png', function (texture) {
+  const texture = textureLoader.load('gallery/textures/Jessica.png', function (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
   });
   texture.encoding = THREE.sRGBEncoding;
@@ -373,7 +373,7 @@ function createJessicaDoor() {
 function createSoumyaDoor() {
   const geometry = new THREE.PlaneBufferGeometry(27, 30, 0, 0);
   const textureLoader = new THREE.TextureLoader();
-  const texture = textureLoader.load('textures/Soumya.jpg', function (texture) {
+  const texture = textureLoader.load('gallery/textures/Soumya.jpg', function (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
   });
   // texture.repeat.set(5, 5);
@@ -411,7 +411,7 @@ function createSoumyaDoor() {
 function createNancyDoor() {
   const geometry = new THREE.PlaneBufferGeometry(22, 30, 0, 0);
   const textureLoader = new THREE.TextureLoader();
-  const texture = textureLoader.load('textures/Nancy.png', function (texture) {
+  const texture = textureLoader.load('gallery/textures/Nancy.png', function (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
   });
   // texture.repeat.set(5, 5);
@@ -441,7 +441,7 @@ function createNancyDoor() {
 function createMeganDoor() {
   const geometry = new THREE.PlaneBufferGeometry(27, 30, 0, 0);
   const textureLoader = new THREE.TextureLoader();
-  const texture = textureLoader.load('textures/AngerEmpathypic-Magen.PNG', function (texture) {
+  const texture = textureLoader.load('gallery/textures/AngerEmpathypic-Magen.PNG', function (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
   });
   // texture.repeat.set(5, 5);
@@ -471,7 +471,7 @@ function createMeganDoor() {
 function createJonathanDoor() {
   const geometry = new THREE.PlaneBufferGeometry(22, 35, 0, 0);
   const textureLoader = new THREE.TextureLoader();
-  const texture = textureLoader.load('textures/assemble-sjelin-Jonathan.jpg', function (texture) {
+  const texture = textureLoader.load('gallery/textures/assemble-sjelin-Jonathan.jpg', function (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
   });
   // texture.repeat.set(5, 5);
@@ -503,7 +503,7 @@ mesh.rotation.y =  11.2;
 function createYukiDoor() {
   const geometry = new THREE.PlaneBufferGeometry(16, 49, 0, 0);
   const textureLoader = new THREE.TextureLoader();
-  const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
+  const texture = textureLoader.load('gallery/textures/ChrisTexture.png', function (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
   });
   // texture.repeat.set(5, 5);
@@ -534,7 +534,7 @@ function createYukiDoor() {
 function createLianaDoor() {
   const geometry = new THREE.PlaneBufferGeometry(28, 40, 0, 0);
   const textureLoader = new THREE.TextureLoader();
-  const texture = textureLoader.load('textures/Liana.png', function (texture) {
+  const texture = textureLoader.load('gallery/textures/Liana.png', function (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
   });
   // texture.repeat.set(5, 5);
@@ -565,7 +565,7 @@ function createLianaDoor() {
 function createNikitaDoor() {
   const geometry = new THREE.PlaneBufferGeometry(20, 30, 0, 0);
   const textureLoader = new THREE.TextureLoader();
-  const texture = textureLoader.load('textures/Nikita.jpg', function (texture) {
+  const texture = textureLoader.load('gallery/textures/Nikita.jpg', function (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
   });
   // texture.repeat.set(5, 5);
@@ -591,7 +591,7 @@ function createNikitaDoor() {
 function createOwenDoor() {
   const geometry = new THREE.PlaneBufferGeometry(16, 28, 0, 0);
   const textureLoader = new THREE.TextureLoader();
-  const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
+  const texture = textureLoader.load('gallery/textures/ChrisTexture.png', function (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
   });
   // texture.repeat.set(5, 5);
@@ -617,7 +617,7 @@ function createOwenDoor() {
 function createLuisDoor() {
   const geometry = new THREE.PlaneBufferGeometry(20, 28, 0, 0);
   const textureLoader = new THREE.TextureLoader();
-  const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
+  const texture = textureLoader.load('gallery/textures/ChrisTexture.png', function (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
   });
   // texture.repeat.set(5, 5);
@@ -644,7 +644,7 @@ function createLuisDoor() {
 function createFengpingDoor() {
   const geometry = new THREE.PlaneBufferGeometry(20, 40, 0, 0);
   const textureLoader = new THREE.TextureLoader();
-  const texture = textureLoader.load('textures/Fengping.png', function (texture) {
+  const texture = textureLoader.load('gallery/textures/Fengping.png', function (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
   });
   // texture.repeat.set(5, 5);
@@ -697,7 +697,7 @@ function createFengpingDoor() {
 function createNicholasDoor() {
   const geometry = new THREE.PlaneBufferGeometry(25, 35, 0, 0);
   const textureLoader = new THREE.TextureLoader();
-  const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
+  const texture = textureLoader.load('gallery/textures/ChrisTexture.png', function (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
   });
   texture.encoding = THREE.sRGBEncoding;
@@ -724,7 +724,7 @@ function createNicholasDoor() {
 function createCharmiDoor() {
   const geometry = new THREE.PlaneBufferGeometry(25, 41, 0, 0);
   const textureLoader = new THREE.TextureLoader();
-  const texture = textureLoader.load('textures/data-3js-Charmi.png', function (texture) {
+  const texture = textureLoader.load('gallery/textures/data-3js-Charmi.png', function (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
   });
   // texture.repeat.set(5, 5);
@@ -751,7 +751,7 @@ function createCharmiDoor() {
 function createConnorDoor() {
   const geometry = new THREE.PlaneBufferGeometry(26, 28, 0, 0);
   const textureLoader = new THREE.TextureLoader();
-  const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
+  const texture = textureLoader.load('gallery/textures/ChrisTexture.png', function (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
   });
   // texture.repeat.set(5, 5);
@@ -778,7 +778,7 @@ function createConnorDoor() {
 function createTerranceDoor() {
   const geometry = new THREE.PlaneBufferGeometry(24, 33, 0, 0);
   const textureLoader = new THREE.TextureLoader();
-  const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
+  const texture = textureLoader.load('gallery/textures/ChrisTexture.png', function (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
   });
   // texture.repeat.set(5, 5);
@@ -805,7 +805,7 @@ function createTerranceDoor() {
 function createClaireDoor() {
   const geometry = new THREE.PlaneBufferGeometry(16, 49, 0, 0);
   const textureLoader = new THREE.TextureLoader();
-  const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
+  const texture = textureLoader.load('gallery/textures/ChrisTexture.png', function (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
   });
   // texture.repeat.set(5, 5);
@@ -836,7 +836,7 @@ function createClaireDoor() {
 function createDanDoor() {
   const geometry = new THREE.PlaneBufferGeometry(25, 49, 0, 0);
   const textureLoader = new THREE.TextureLoader();
-  const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
+  const texture = textureLoader.load('gallery/textures/ChrisTexture.png', function (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
   });
   // texture.repeat.set(5, 5);
