@@ -60,7 +60,7 @@ function init() {
   createLights();
   createSkybox();
   loadGallery();
-  // createGrass();
+  createGrass();
 
   createChrisDoor();
   createJayDoor();
@@ -261,28 +261,28 @@ function loadGallery() {
   loader.load('models/seehalfthepicturegallery.gltf', gltf => onLoad(gltf, position, refractorySkybox), onProgress, onError);
 }
 
-// function createGrass() {
-//   const geometry = new THREE.CircleBufferGeometry(240, 240);
-//   const textureLoader = new THREE.TextureLoader();
-//   const texture = textureLoader.load('textures/grasslight-big.jpg', function (texture) {
-//     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-//   });
-//   texture.repeat.set(5, 5);
-//   texture.encoding = THREE.sRGBEncoding;
-//   texture.anisotropy = 16;
-//
-//   const material = new THREE.MeshStandardMaterial({
-//     map: texture,
-//     bumpMap: texture,
-//     bumpScale: 5,
-//   });
-//
-//   const mesh = new THREE.Mesh(geometry, material);
-//   mesh.rotation.x = - Math.PI / 2;
-//   mesh.position.y = 0;
-//   mesh.receiveShadow = true;
-//   scene.add(mesh);
-// }
+function createGrass() {
+  const geometry = new THREE.CircleBufferGeometry(240, 240);
+  const textureLoader = new THREE.TextureLoader();
+  const texture = textureLoader.load('textures/grasslight-big.jpg', function (texture) {
+    texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+  });
+  texture.repeat.set(5, 5);
+  texture.encoding = THREE.sRGBEncoding;
+  texture.anisotropy = 16;
+
+  const material = new THREE.MeshStandardMaterial({
+    map: texture,
+    bumpMap: texture,
+    bumpScale: 5,
+  });
+
+  const mesh = new THREE.Mesh(geometry, material);
+  mesh.rotation.x = - Math.PI / 2;
+  mesh.position.y = 0;
+  mesh.receiveShadow = true;
+  scene.add(mesh);
+}
 
 function createChrisDoor() {
   const geometry = new THREE.PlaneBufferGeometry(23, 35, 0, 0);
