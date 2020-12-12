@@ -204,7 +204,8 @@ function createSkybox() {
 
 function createCamera() {
   camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 1, 500);
-  camera.position.set(-9, 13, 40);
+  // camera.position.set(-9, 13, 40);
+  camera.position.set(-0.19, 215, 1.65);
 
 }
 
@@ -287,7 +288,7 @@ function createGrass() {
 }
 
 function createChrisDoor() {
-  const geometry = new THREE.PlaneBufferGeometry(16, 49, 0, 0);
+  const geometry = new THREE.PlaneBufferGeometry(23, 35, 0, 0);
   const textureLoader = new THREE.TextureLoader();
   const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
@@ -305,7 +306,8 @@ function createChrisDoor() {
   const mesh = new THREE.Mesh(geometry, material);
   mesh.userData = {URL:'https://cbastian3.github.io/underarock.github.io'};
   //change these values to get the door to appear in the correct space
-  mesh.rotation.y =  -75.92;
+  mesh.rotation.y =  -1.45;
+  // -75.92
   mesh.position.x = 134.025;
   mesh.position.y = 18.823;
   mesh.position.z = 3.3;
@@ -316,7 +318,7 @@ function createChrisDoor() {
 }
 
 function createJayDoor() {
-  const geometry = new THREE.PlaneBufferGeometry(16, 49, 0, 0);
+  const geometry = new THREE.PlaneBufferGeometry(19, 35, 0, 0);
   const textureLoader = new THREE.TextureLoader();
   const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
@@ -334,10 +336,10 @@ function createJayDoor() {
   const mesh = new THREE.Mesh(geometry, material);
   mesh.userData = {URL:'https://taikun649.github.io/Conflict-Liberty/'};
   //change these values to get the door to appear in the correct space
-  mesh.rotation.y =  160;
-  mesh.position.x = 126.861;
-  mesh.position.y = 18.823;
-  mesh.position.z = 37.444;
+  mesh.rotation.y =  -2.4;
+  mesh.position.x = 45;
+  mesh.position.y = 16;
+  mesh.position.z = 97;
   //don't change anything else!
 
   mesh.receiveShadow = true;
@@ -346,7 +348,7 @@ function createJayDoor() {
 
 
 function createJessicaDoor() {
-  const geometry = new THREE.PlaneBufferGeometry(16, 49, 0, 0);
+  const geometry = new THREE.PlaneBufferGeometry(20, 33, 0, 0);
   const textureLoader = new THREE.TextureLoader();
   const texture = textureLoader.load('textures/Jessica.png', function (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
@@ -364,12 +366,12 @@ function createJessicaDoor() {
   const mesh = new THREE.Mesh(geometry, material);
   mesh.userData = {URL:'https://Stranded-at-home.github.io'};
   //change these values to get the door to appear in the correct space
-  mesh.rotation.x =  180;
-  mesh.rotation.y =  -8.96;
-  mesh.rotation.z =  180;
+  // mesh.rotation.x =  180;
+  mesh.rotation.y =  -9.3;
+  // mesh.rotation.z =  180;
   mesh.position.x = 95.137;
   mesh.position.y = 18.823;
-  mesh.position.z = 51.704;
+  mesh.position.z = 55;
   //don't change anything else!
 
   mesh.receiveShadow = true;
@@ -415,7 +417,7 @@ function createSoumyaDoor() {
 }
 
 function createNancyDoor() {
-  const geometry = new THREE.PlaneBufferGeometry(27, 30, 0, 0);
+  const geometry = new THREE.PlaneBufferGeometry(22, 30, 0, 0);
   const textureLoader = new THREE.TextureLoader();
   const texture = textureLoader.load('textures/Nancy.png', function (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
@@ -432,18 +434,10 @@ function createNancyDoor() {
 
   const mesh = new THREE.Mesh(geometry, material);
   mesh.userData = {URL:'https://unseen2020.github.io/'};
-  //change these values to get the door to appear in the correct space
-  // mesh.rotation.x =  180;
-  // mesh.rotation.y =  -41.26;
-  // mesh.rotation.z =  180;
-  // mesh.position.x = 42.51;
-  // mesh.position.y = 18.823;
-  // mesh.position.z = 93.976;
-  //don't change anything else!
 
   // //change these values to get the door to appear in the correct space
-  mesh.rotation.y =  120;
-  mesh.position.x = -100;
+  mesh.rotation.y =  120.2;
+  mesh.position.x = -105;
   mesh.position.y = 20;
   mesh.position.z = -57;
   // //don't change anything else!
@@ -470,14 +464,6 @@ function createMeganDoor() {
 
   const mesh = new THREE.Mesh(geometry, material);
   mesh.userData = {URL:'https://AngerEmpathy.github.io'};
-  //change these values to get the door to appear in the correct space
-  // mesh.rotation.x =  180;
-  // mesh.rotation.y =  34.22;
-  // mesh.rotation.z =  180;
-  // mesh.position.x = 7.344;
-  // mesh.position.y = 18.823;
-  // mesh.position.z = 99.607;
-  //don't change anything else!
 
   // //change these values to get the door to appear in the correct space
   mesh.rotation.y =  221;
@@ -491,7 +477,7 @@ function createMeganDoor() {
 }
 
 function createJonathanDoor() {
-  const geometry = new THREE.PlaneBufferGeometry(16, 49, 0, 0);
+  const geometry = new THREE.PlaneBufferGeometry(22, 35, 0, 0);
   const textureLoader = new THREE.TextureLoader();
   const texture = textureLoader.load('textures/assemble-sjelin-Jonathan.jpg', function (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
@@ -510,12 +496,12 @@ function createJonathanDoor() {
   mesh.userData = {URL:'https://jankyjon.github.io/gallery-project'};
   //change these values to get the door to appear in the correct space
   //mesh.rotation.y =  225;
-mesh.rotation.y =  14.98;
+mesh.rotation.y =  11.2;
 //mesh.rotation.y =  225;
 
-  mesh.position.x = -26.878;
+  mesh.position.x = 91;
   mesh.position.y = 18.823;
-  mesh.position.z = 18.080;
+  mesh.position.z = -52;
   //don't change anything else!
 
   mesh.receiveShadow = true;
@@ -554,7 +540,7 @@ function createYukiDoor() {
 }
 
 function createLianaDoor() {
-  const geometry = new THREE.PlaneBufferGeometry(16, 49, 0, 0);
+  const geometry = new THREE.PlaneBufferGeometry(20, 40, 0, 0);
   const textureLoader = new THREE.TextureLoader();
   const texture = textureLoader.load('textures/Liana.png', function (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
@@ -573,11 +559,11 @@ function createLianaDoor() {
   mesh.userData = {URL:'https://lianaluxe.github.io/LearningThreeJS/ocean.html'};
   //change these values to get the door to appear in the correct space
   //mesh.rotation.y =  160;
-  mesh.rotation.y =  75.99;
+  mesh.rotation.y =  83.5;
   //mesh.rotation.y =  160;
   mesh.position.x = -94.271;
   mesh.position.y = 20.315;
-  mesh.position.z = 56.617;
+  mesh.position.z = 58;
   //don't change anything else!
 
   mesh.receiveShadow = true;
@@ -585,7 +571,7 @@ function createLianaDoor() {
 }
 
 function createNikitaDoor() {
-  const geometry = new THREE.PlaneBufferGeometry(16, 28, 0, 0);
+  const geometry = new THREE.PlaneBufferGeometry(20, 30, 0, 0);
   const textureLoader = new THREE.TextureLoader();
   const texture = textureLoader.load('textures/Nikita.jpg', function (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
@@ -603,10 +589,10 @@ function createNikitaDoor() {
   const mesh = new THREE.Mesh(geometry, material);
   mesh.userData = {URL:'https://nikigokhale.github.io/theres-hope-after-all/'};
 
-  mesh.rotation.y =  88.85;
-  mesh.position.x = -94.545;
+  mesh.rotation.y =  83.2;
+  mesh.position.x = -95;
   mesh.position.y = 20.315;
-  mesh.position.z = 17.872;
+  mesh.position.z = 19;
   mesh.receiveShadow = true;
   scene.add(mesh);
 }
@@ -637,7 +623,7 @@ function createOwenDoor() {
   scene.add(mesh);
 }
 function createLuisDoor() {
-  const geometry = new THREE.PlaneBufferGeometry(16, 28, 0, 0);
+  const geometry = new THREE.PlaneBufferGeometry(20, 28, 0, 0);
   const textureLoader = new THREE.TextureLoader();
   const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
@@ -655,10 +641,10 @@ function createLuisDoor() {
   const mesh = new THREE.Mesh(geometry, material);
   mesh.userData = {URL:'https://github.com/LuisRam-25/LuisRam-25.io'};
 
-  mesh.rotation.y =  47.38;
-  mesh.position.x = -101.336;
+  mesh.rotation.y =  44.1;
+  mesh.position.x = -47;
   mesh.position.y = 20.315;
-  mesh.position.z = -54.790;
+  mesh.position.z = -105;
   mesh.receiveShadow = true;
   scene.add(mesh);
 }
@@ -717,7 +703,7 @@ function createFengpingDoor() {
 // }
 
 function createNicholasDoor() {
-  const geometry = new THREE.PlaneBufferGeometry(25, 40, 0, 0);
+  const geometry = new THREE.PlaneBufferGeometry(25, 35, 0, 0);
   const textureLoader = new THREE.TextureLoader();
   const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
@@ -744,7 +730,7 @@ function createNicholasDoor() {
 
 
 function createCharmiDoor() {
-  const geometry = new THREE.PlaneBufferGeometry(25, 49, 0, 0);
+  const geometry = new THREE.PlaneBufferGeometry(25, 41, 0, 0);
   const textureLoader = new THREE.TextureLoader();
   const texture = textureLoader.load('textures/data-3js-Charmi.png', function (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
@@ -762,16 +748,16 @@ function createCharmiDoor() {
   const mesh = new THREE.Mesh(geometry, material);
   mesh.userData = {URL:'Data-Threejs.github.io'};
 
-  mesh.rotation.y =  15.34;
+  mesh.rotation.y = 31.7;
   mesh.position.x = 11.151;
   mesh.position.y = 20.315;
-  mesh.position.z = -79.576;
+  mesh.position.z = -82;
   mesh.receiveShadow = true;
   scene.add(mesh);
 }
 
 function createConnorDoor() {
-  const geometry = new THREE.PlaneBufferGeometry(16, 28, 0, 0);
+  const geometry = new THREE.PlaneBufferGeometry(24, 28, 0, 0);
   const textureLoader = new THREE.TextureLoader();
   const texture = textureLoader.load('textures/data-3js.png', function (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
@@ -789,16 +775,16 @@ function createConnorDoor() {
   const mesh = new THREE.Mesh(geometry, material);
   mesh.userData = {URL:'https://Connor-Final.github.io'};
 
-  mesh.rotation.y =  13.48;
-  mesh.position.x = 69.834;
+  mesh.rotation.y =  12.8;
+  mesh.position.x = 50;
   mesh.position.y = 20.315;
-  mesh.position.z = -92.714;
+  mesh.position.z = -97;
   mesh.receiveShadow = true;
   scene.add(mesh);
 }
 
 function createTerranceDoor() {
-  const geometry = new THREE.PlaneBufferGeometry(16, 49, 0, 0);
+  const geometry = new THREE.PlaneBufferGeometry(24, 33, 0, 0);
   const textureLoader = new THREE.TextureLoader();
   const texture = textureLoader.load('textures/data-3js.png', function (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
@@ -816,10 +802,10 @@ function createTerranceDoor() {
   const mesh = new THREE.Mesh(geometry, material);
   mesh.userData = {URL:'https://github.com/LabriolaArt-356/LabriolaArt-356.github.io'};
 
-  mesh.rotation.y =  -64.03;
-  mesh.position.x = 83.905;
+  mesh.rotation.y =  -64;
+  mesh.position.x = 88;
   mesh.position.y = 20.315;
-  mesh.position.z = -81.919;
+  mesh.position.z = -85;
   mesh.receiveShadow = true;
   scene.add(mesh);
 }
@@ -843,16 +829,20 @@ function createClaireDoor() {
   const mesh = new THREE.Mesh(geometry, material);
   //mesh.userData = {URL:….}
 
-  mesh.rotation.y =  -79.85;
-  mesh.position.x = 86.994;
-  mesh.position.y = 20.315;
-  mesh.position.z = -48.446;
+  // mesh.rotation.y =  -79.85;
+  // mesh.position.x = 86.994;
+  // mesh.position.y = 20.315;
+  // mesh.position.z = -48;
+  mesh.rotation.y =  0;
+  mesh.position.x =69;
+  mesh.position.y = 16;
+  mesh.position.z = 69;
   mesh.receiveShadow = true;
   scene.add(mesh);
 }
 
 function createDanDoor() {
-  const geometry = new THREE.PlaneBufferGeometry(16, 49, 0, 0);
+  const geometry = new THREE.PlaneBufferGeometry(25, 49, 0, 0);
   const textureLoader = new THREE.TextureLoader();
   const texture = textureLoader.load('textures/data-3js.png', function (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
@@ -870,10 +860,10 @@ function createDanDoor() {
   const mesh = new THREE.Mesh(geometry, material);
   mesh.userData = {URL:'https://DrowningInPlastic.github.io'};
 
-  mesh.rotation.y =  -31.20;
-  mesh.position.x = 108.167;
-  mesh.position.y = 20.315;
-  mesh.position.z = -20.440;
+  mesh.rotation.y =  -2.2;
+  mesh.position.x = 67;
+  mesh.position.y = 16;
+  mesh.position.z = 69;
   mesh.receiveShadow = true;
   scene.add(mesh);
 }
@@ -906,8 +896,8 @@ function update() {
 function render() {
   renderer.render(scene, camera);
 
-  // console.log(camera.position);
-  // console.log(camera.rotation);
+   console.log(camera.position);
+   // console.log(camera.rotation);
 }
 
 function onWindowResize() {
