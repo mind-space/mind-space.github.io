@@ -60,7 +60,7 @@ function init() {
   createLights();
   createSkybox();
   loadGallery();
-  createGrass();
+  // createGrass();
 
   createChrisDoor();
   createJayDoor();
@@ -185,14 +185,14 @@ function init() {
 
 function createSkybox() {
   const skyboxTexture = new THREE.CubeTextureLoader()
-     .setPath("js/three.js-master/examples/textures/cube/MilkyWay/")
-     .load(['dark-s_nx.jpg', 'dark-s_px.jpg', 'dark-s_ny.jpg', 'dark-s_py.jpg', 'dark-s_nz.jpg', 'dark-s_pz.jpg']);
-     // .setPath("js/three.js-master/examples/textures/cube/skyboxsun25deg")
-     // .load(['px.jpg', 'nx.jpg', 'py.jpg', 'ny.jpg', 'pz.jpg', 'nz.jpg']);
+      .setPath("js/three.js-master/examples/textures/cube/MilkyWay/")
+      .load(['dark-s_px.jpg', 'dark-s_nx.jpg', 'dark-s_py.jpg', 'dark-s_ny.jpg', 'dark-s_pz.jpg', 'dark-s_nz.jpg']);
+      // .setPath("js/three.js-master/examples/textures/cube/skyboxsun25deg")
+      // .load(['px.jpg', 'nx.jpg', 'py.jpg', 'ny.jpg', 'pz.jpg', 'nz.jpg']);
 
   refractorySkybox = new THREE.MeshPhongMaterial({
     envMap: skyboxTexture,
-    reflectivity: 0.7,
+    reflectivity: 0.8,
     color: "white",
     skinning: true
   })
@@ -204,8 +204,8 @@ function createSkybox() {
 
 function createCamera() {
   camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 1, 500);
-  // camera.position.set(-9, 13, 40);
-  camera.position.set(-0.19, 215, 1.65);
+  camera.position.set(-9, 13, 40);
+  //camera.position.set(-0.19, 215, 1.65);
 
 }
 
@@ -215,14 +215,19 @@ function createControls() {
 }
 
 function createLights() {
+  // const mainLight = new THREE.DirectionalLight(0xaca3bf, -3); f0d8a1   0xe1ddeb
   const mainLight = new THREE.DirectionalLight(0xaca3bf, -3);
   mainLight.position.set(50, 100, 100);
   mainLight.castShadow = true;
   mainLight.shadow.mapSize.width = 50;
   mainLight.shadow.mapSize.height = 50;
 
-  const ambientLight = new THREE.HemisphereLight(0xddeeff, 0x0f0e0d, 10);
-  scene.add(ambientLight, mainLight);
+  // const ambientLight = new THREE.HemisphereLight(0xddeeff, 0x0f0e0d, 12);0xd1c7d4, 0xdcd3e0,  0xedf5fc, 0xa3998e,
+  // const ambientLight = new THREE.HemisphereLight(0xddeeff, 0x0f0e0d, 12);
+  // scene.add(ambientLight);
+
+  const ambientLight = new THREE.HemisphereLight(0xddeeff, 0x0f0e0d, 14);
+  scene.add(ambientLight);
 }
 
 function loadGallery() {
@@ -233,14 +238,6 @@ function loadGallery() {
 
     const model = gltf.scene.children[0];
     model.position.copy(position);
-
-    // const mixer = new THREE.AnimationMixer(model);
-    // mixers.push(mixer);
-    //
-    // const clips = gltf.animations;
-    // clips.forEach((clip) => {
-    //   mixer.clipAction(clip).play();
-    // });
 
     const object = gltf.scene;
     object.traverse((child) => {
@@ -261,31 +258,31 @@ function loadGallery() {
   // load the first model. Each model is loaded asynchronously,
   // so don't make any assumption about which one will finish loading first
   const position = new THREE.Vector3(-9, 0, -10);
-  loader.load('models/gallerystructure.glb', gltf => onLoad(gltf, position, refractorySkybox), onProgress, onError);
+  loader.load('models/seehalfthepicturegallery.gltf', gltf => onLoad(gltf, position, refractorySkybox), onProgress, onError);
 }
 
-function createGrass() {
-  const geometry = new THREE.CircleBufferGeometry(300, 300);
-  const textureLoader = new THREE.TextureLoader();
-  const texture = textureLoader.load('textures/grasslight-big.jpg', function (texture) {
-    texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-  });
-  texture.repeat.set(5, 5);
-  texture.encoding = THREE.sRGBEncoding;
-  texture.anisotropy = 16;
-
-  const material = new THREE.MeshStandardMaterial({
-    map: texture,
-    bumpMap: texture,
-    bumpScale: 5,
-  });
-
-  const mesh = new THREE.Mesh(geometry, material);
-  mesh.rotation.x = - Math.PI / 2;
-  mesh.position.y = 0;
-  mesh.receiveShadow = true;
-  scene.add(mesh);
-}
+// function createGrass() {
+//   const geometry = new THREE.CircleBufferGeometry(240, 240);
+//   const textureLoader = new THREE.TextureLoader();
+//   const texture = textureLoader.load('textures/grasslight-big.jpg', function (texture) {
+//     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+//   });
+//   texture.repeat.set(5, 5);
+//   texture.encoding = THREE.sRGBEncoding;
+//   texture.anisotropy = 16;
+//
+//   const material = new THREE.MeshStandardMaterial({
+//     map: texture,
+//     bumpMap: texture,
+//     bumpScale: 5,
+//   });
+//
+//   const mesh = new THREE.Mesh(geometry, material);
+//   mesh.rotation.x = - Math.PI / 2;
+//   mesh.position.y = 0;
+//   mesh.receiveShadow = true;
+//   scene.add(mesh);
+// }
 
 function createChrisDoor() {
   const geometry = new THREE.PlaneBufferGeometry(23, 35, 0, 0);
@@ -307,7 +304,6 @@ function createChrisDoor() {
   mesh.userData = {URL:'https://cbastian3.github.io/underarock.github.io'};
   //change these values to get the door to appear in the correct space
   mesh.rotation.y =  -1.45;
-  // -75.92
   mesh.position.x = 134.025;
   mesh.position.y = 18.823;
   mesh.position.z = 3.3;
@@ -323,7 +319,6 @@ function createJayDoor() {
   const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
   });
-  // texture.repeat.set(5, 5);
   texture.encoding = THREE.sRGBEncoding;
   texture.anisotropy = 16;
 
@@ -338,7 +333,7 @@ function createJayDoor() {
   //change these values to get the door to appear in the correct space
   mesh.rotation.y =  -2.4;
   mesh.position.x = 45;
-  mesh.position.y = 16;
+  mesh.position.y = 20;
   mesh.position.z = 97;
   //don't change anything else!
 
@@ -353,7 +348,6 @@ function createJessicaDoor() {
   const texture = textureLoader.load('textures/Jessica.png', function (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
   });
-  // texture.repeat.set(5, 5);
   texture.encoding = THREE.sRGBEncoding;
   texture.anisotropy = 16;
 
@@ -366,9 +360,7 @@ function createJessicaDoor() {
   const mesh = new THREE.Mesh(geometry, material);
   mesh.userData = {URL:'https://Stranded-at-home.github.io'};
   //change these values to get the door to appear in the correct space
-  // mesh.rotation.x =  180;
   mesh.rotation.y =  -9.3;
-  // mesh.rotation.z =  180;
   mesh.position.x = 95.137;
   mesh.position.y = 18.823;
   mesh.position.z = 55;
@@ -449,7 +441,7 @@ function createNancyDoor() {
 function createMeganDoor() {
   const geometry = new THREE.PlaneBufferGeometry(27, 30, 0, 0);
   const textureLoader = new THREE.TextureLoader();
-  const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
+  const texture = textureLoader.load('textures/AngerEmpathypic-Magen.PNG', function (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
   });
   // texture.repeat.set(5, 5);
@@ -499,7 +491,7 @@ function createJonathanDoor() {
 mesh.rotation.y =  11.2;
 //mesh.rotation.y =  225;
 
-  mesh.position.x = 91;
+  mesh.position.x = 92;
   mesh.position.y = 18.823;
   mesh.position.z = -52;
   //don't change anything else!
@@ -540,7 +532,7 @@ function createYukiDoor() {
 }
 
 function createLianaDoor() {
-  const geometry = new THREE.PlaneBufferGeometry(20, 40, 0, 0);
+  const geometry = new THREE.PlaneBufferGeometry(28, 40, 0, 0);
   const textureLoader = new THREE.TextureLoader();
   const texture = textureLoader.load('textures/Liana.png', function (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
@@ -559,11 +551,11 @@ function createLianaDoor() {
   mesh.userData = {URL:'https://lianaluxe.github.io/LearningThreeJS/ocean.html'};
   //change these values to get the door to appear in the correct space
   //mesh.rotation.y =  160;
-  mesh.rotation.y =  83.5;
+  mesh.rotation.y =  83.45;
   //mesh.rotation.y =  160;
-  mesh.position.x = -94.271;
+  mesh.position.x = -96;
   mesh.position.y = 20.315;
-  mesh.position.z = 58;
+  mesh.position.z = 60;
   //don't change anything else!
 
   mesh.receiveShadow = true;
@@ -590,9 +582,9 @@ function createNikitaDoor() {
   mesh.userData = {URL:'https://nikigokhale.github.io/theres-hope-after-all/'};
 
   mesh.rotation.y =  83.2;
-  mesh.position.x = -95;
+  mesh.position.x = -100;
   mesh.position.y = 20.315;
-  mesh.position.z = 19;
+  mesh.position.z = 18;
   mesh.receiveShadow = true;
   scene.add(mesh);
 }
@@ -642,8 +634,8 @@ function createLuisDoor() {
   mesh.userData = {URL:'https://github.com/LuisRam-25/LuisRam-25.io'};
 
   mesh.rotation.y =  44.1;
-  mesh.position.x = -47;
-  mesh.position.y = 20.315;
+  mesh.position.x = -49;
+  mesh.position.y = 21;
   mesh.position.z = -105;
   mesh.receiveShadow = true;
   scene.add(mesh);
@@ -757,9 +749,9 @@ function createCharmiDoor() {
 }
 
 function createConnorDoor() {
-  const geometry = new THREE.PlaneBufferGeometry(24, 28, 0, 0);
+  const geometry = new THREE.PlaneBufferGeometry(26, 28, 0, 0);
   const textureLoader = new THREE.TextureLoader();
-  const texture = textureLoader.load('textures/data-3js.png', function (texture) {
+  const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
   });
   // texture.repeat.set(5, 5);
@@ -777,7 +769,7 @@ function createConnorDoor() {
 
   mesh.rotation.y =  12.8;
   mesh.position.x = 50;
-  mesh.position.y = 20.315;
+  mesh.position.y = 21;
   mesh.position.z = -97;
   mesh.receiveShadow = true;
   scene.add(mesh);
@@ -786,7 +778,7 @@ function createConnorDoor() {
 function createTerranceDoor() {
   const geometry = new THREE.PlaneBufferGeometry(24, 33, 0, 0);
   const textureLoader = new THREE.TextureLoader();
-  const texture = textureLoader.load('textures/data-3js.png', function (texture) {
+  const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
   });
   // texture.repeat.set(5, 5);
@@ -813,7 +805,7 @@ function createTerranceDoor() {
 function createClaireDoor() {
   const geometry = new THREE.PlaneBufferGeometry(16, 49, 0, 0);
   const textureLoader = new THREE.TextureLoader();
-  const texture = textureLoader.load('textures/data-3js.png', function (texture) {
+  const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
   });
   // texture.repeat.set(5, 5);
@@ -844,7 +836,7 @@ function createClaireDoor() {
 function createDanDoor() {
   const geometry = new THREE.PlaneBufferGeometry(25, 49, 0, 0);
   const textureLoader = new THREE.TextureLoader();
-  const texture = textureLoader.load('textures/data-3js.png', function (texture) {
+  const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
   });
   // texture.repeat.set(5, 5);
@@ -896,7 +888,7 @@ function update() {
 function render() {
   renderer.render(scene, camera);
 
-   console.log(camera.position);
+   //console.log(camera.position);
    // console.log(camera.rotation);
 }
 
