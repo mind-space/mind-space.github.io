@@ -5,9 +5,50 @@ let controls;
 let renderer;
 let scene;
 let refractorySkybox;
-const mixers = [];
 let PointerLockControls;
 let HTMLDOMElement;
+
+const mixers = [];
+
+const raycaster = new THREE.Raycaster();
+const mouse = new THREE.Vector2();
+
+function getUrl(intersect) {
+  try {
+    return intersect.object.userData.URL;
+  } catch(err) {
+    return false;
+  }
+}
+
+function doStuffwithRaycaster() {
+   raycaster.setFromCamera( mouse, camera );
+   var intersects = raycaster.intersectObjects( scene.children, true );
+
+   if (intersects.length > 0) {
+     const url = getUrl(intersects[0]);
+     if(url) {
+       window.open(url);
+    }
+   }
+}
+
+function onMouseMove( event ) {
+  // calculate mouse position in normalized device coordinates
+  // (-1 to +1) for both components
+  mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+  mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+
+  // console.log(mouse);
+}
+
+window.addEventListener('mousemove', onMouseMove, false );
+window.addEventListener( 'click', onDocumentMouseDown, false );
+
+function onDocumentMouseDown( event ) {
+  event.preventDefault();
+  doStuffwithRaycaster();
+}
 
 function init() {
 
@@ -20,27 +61,27 @@ function init() {
   createSkybox();
   loadGallery();
   createGrass();
-  createChrisDoor();
-  createChrisDoor2();
-  createChrisDoor3();
-  createSoumyaDoor();
-  createSoumyaDoor2();
-  createSoumyaDoor3();
-  createJonathanDoor();
-  createJonathanDoor2();
-  createJonathanDoor3();
-  createNikitaDoor();
-  createNikitaDoor2();
-  createNikitaDoor3();
-  createFengpingDoor();
-  createFengpingDoor2();
-  createFengpingDoor3();
-  createCharmiDoor();
-  createCharmiDoor2();
-  createCharmiDoor3();
-  createCharmiDoor4();
-  createCharmiDoor5();
 
+  createChrisDoor();
+  createJayDoor();
+  createJessicaDoor();
+  createSoumyaDoor();
+  createNancyDoor();
+  createMeganDoor();
+  createJonathanDoor();
+  //createYukiDoor();
+  createLianaDoor();
+  createNikitaDoor();
+  //createOwenDoor();
+  createLuisDoor();
+  createFengpingDoor();
+  createLynnDoor();
+  createNicholasDoor();
+  createCharmiDoor();
+  createConnorDoor();
+  createTerranceDoor();
+  //createClaireDoor();
+  createDanDoor();
 
   createRenderer();
 
@@ -53,11 +94,11 @@ function init() {
 				const blocker = document.getElementById( 'blocker' );
 				const instructions = document.getElementById( 'instructions' );
 
-				instructions.addEventListener( 'click', function () {
-
-					controls.lock();
-
-				}, false );
+				// instructions.addEventListener( 'click', function () {
+        //
+				// 	controls.lock();
+        //
+				// }, false );
 
 				controls.addEventListener( 'lock', function () {
 
@@ -142,16 +183,16 @@ function init() {
 }
 
 
-
-
 function createSkybox() {
   const skyboxTexture = new THREE.CubeTextureLoader()
-    .setPath("js/three.js-master/examples/textures/cube/MilkyWay/")
-    .load(['dark-s_nx.jpg', 'dark-s_nx.jpg', 'dark-s_ny.jpg', 'dark-s_ny.jpg', 'dark-s_nz.jpg', 'dark-s_nz.jpg']);
+     .setPath("js/three.js-master/examples/textures/cube/MilkyWay/")
+     .load(['dark-s_nx.jpg', 'dark-s_px.jpg', 'dark-s_ny.jpg', 'dark-s_py.jpg', 'dark-s_nz.jpg', 'dark-s_pz.jpg']);
+     // .setPath("js/three.js-master/examples/textures/cube/skyboxsun25deg")
+     // .load(['px.jpg', 'nx.jpg', 'py.jpg', 'ny.jpg', 'pz.jpg', 'nz.jpg']);
 
   refractorySkybox = new THREE.MeshPhongMaterial({
     envMap: skyboxTexture,
-    reflectivity: 0.5,
+    reflectivity: 0.7,
     color: "white",
     skinning: true
   })
@@ -160,8 +201,6 @@ function createSkybox() {
 
   scene.background = skyboxTexture;
 }
-
-
 
 function createCamera() {
   camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 1, 500);
@@ -181,7 +220,7 @@ function createLights() {
   mainLight.shadow.mapSize.width = 50;
   mainLight.shadow.mapSize.height = 50;
 
-  const ambientLight = new THREE.HemisphereLight(0xddeeff, 0x0f0e0d, 6);
+  const ambientLight = new THREE.HemisphereLight(0xddeeff, 0x0f0e0d, 10);
   scene.add(ambientLight, mainLight);
 }
 
@@ -194,15 +233,13 @@ function loadGallery() {
     const model = gltf.scene.children[0];
     model.position.copy(position);
 
-    // model.rotation.y = (45);
-
-    const mixer = new THREE.AnimationMixer(model);
-    mixers.push(mixer);
-
-    const clips = gltf.animations;
-    clips.forEach((clip) => {
-      mixer.clipAction(clip).play();
-    });
+    // const mixer = new THREE.AnimationMixer(model);
+    // mixers.push(mixer);
+    //
+    // const clips = gltf.animations;
+    // clips.forEach((clip) => {
+    //   mixer.clipAction(clip).play();
+    // });
 
     const object = gltf.scene;
     object.traverse((child) => {
@@ -227,7 +264,7 @@ function loadGallery() {
 }
 
 function createGrass() {
-  const geometry = new THREE.PlaneBufferGeometry(500, 500, 0, 0);
+  const geometry = new THREE.CircleBufferGeometry(300, 300);
   const textureLoader = new THREE.TextureLoader();
   const texture = textureLoader.load('textures/grasslight-big.jpg', function (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
@@ -266,7 +303,7 @@ function createChrisDoor() {
   });
 
   const mesh = new THREE.Mesh(geometry, material);
-
+  mesh.userData = {URL:'https://cbastian3.github.io/underarock.github.io'};
   //change these values to get the door to appear in the correct space
   mesh.rotation.y =  -75.92;
   mesh.position.x = 134.025;
@@ -278,7 +315,7 @@ function createChrisDoor() {
   scene.add(mesh);
 }
 
-function createChrisDoor2() {
+function createJayDoor() {
   const geometry = new THREE.PlaneBufferGeometry(16, 49, 0, 0);
   const textureLoader = new THREE.TextureLoader();
   const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
@@ -295,7 +332,7 @@ function createChrisDoor2() {
   });
 
   const mesh = new THREE.Mesh(geometry, material);
-
+  mesh.userData = {URL:'https://taikun649.github.io/Conflict-Liberty/'};
   //change these values to get the door to appear in the correct space
   mesh.rotation.y =  160;
   mesh.position.x = 126.861;
@@ -308,10 +345,10 @@ function createChrisDoor2() {
 }
 
 
-function createChrisDoor3() {
+function createJessicaDoor() {
   const geometry = new THREE.PlaneBufferGeometry(16, 49, 0, 0);
   const textureLoader = new THREE.TextureLoader();
-  const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
+  const texture = textureLoader.load('textures/Jessica.png', function (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
   });
   // texture.repeat.set(5, 5);
@@ -325,7 +362,7 @@ function createChrisDoor3() {
   });
 
   const mesh = new THREE.Mesh(geometry, material);
-
+  mesh.userData = {URL:'https://Stranded-at-home.github.io'};
   //change these values to get the door to appear in the correct space
   mesh.rotation.x =  180;
   mesh.rotation.y =  -8.96;
@@ -342,7 +379,7 @@ function createChrisDoor3() {
 function createSoumyaDoor() {
   const geometry = new THREE.PlaneBufferGeometry(27, 30, 0, 0);
   const textureLoader = new THREE.TextureLoader();
-  const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
+  const texture = textureLoader.load('textures/Soumya.jpg', function (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
   });
   // texture.repeat.set(5, 5);
@@ -356,28 +393,66 @@ function createSoumyaDoor() {
   });
 
   const mesh = new THREE.Mesh(geometry, material);
-
+  mesh.userData = {URL:'https://soumya9820.github.io/thevoiceinsideyou.github.io/'};
   //change these values to get the door to appear in the correct space
-  mesh.rotation.x =  180;
-  mesh.rotation.y =  -56.68;
-  mesh.rotation.z =  180;
-  mesh.position.x = 65.291;
-  mesh.position.y = 18.823;
-  mesh.position.z = 66.466;
+  // mesh.rotation.x =  180;
+  // mesh.rotation.y =  -56.68;
+  // mesh.rotation.z =  180;
+  // mesh.position.x = 65.291;
+  // mesh.position.y = 18.823;
+  // mesh.position.z = 66.466;
   //don't change anything else!
 
   // //change these values to get the door to appear in the correct space
-  // mesh.rotation.y =  90;
-  // mesh.position.x = -110;
-  // mesh.position.y = 20;
-  // mesh.position.z = -20;
+  mesh.rotation.y =  90;
+  mesh.position.x = -110;
+  mesh.position.y = 20;
+  mesh.position.z = -20;
   // //don't change anything else!
 
   mesh.receiveShadow = true;
   scene.add(mesh);
 }
 
-function createSoumyaDoor2() {
+function createNancyDoor() {
+  const geometry = new THREE.PlaneBufferGeometry(27, 30, 0, 0);
+  const textureLoader = new THREE.TextureLoader();
+  const texture = textureLoader.load('textures/Nancy.png', function (texture) {
+    texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+  });
+  // texture.repeat.set(5, 5);
+  texture.encoding = THREE.sRGBEncoding;
+  texture.anisotropy = 16;
+
+  const material = new THREE.MeshStandardMaterial({
+    map: texture,
+    bumpMap: texture,
+    // bumpScale: 5,
+  });
+
+  const mesh = new THREE.Mesh(geometry, material);
+  mesh.userData = {URL:'https://unseen2020.github.io/'};
+  //change these values to get the door to appear in the correct space
+  // mesh.rotation.x =  180;
+  // mesh.rotation.y =  -41.26;
+  // mesh.rotation.z =  180;
+  // mesh.position.x = 42.51;
+  // mesh.position.y = 18.823;
+  // mesh.position.z = 93.976;
+  //don't change anything else!
+
+  // //change these values to get the door to appear in the correct space
+  mesh.rotation.y =  120;
+  mesh.position.x = -100;
+  mesh.position.y = 20;
+  mesh.position.z = -57;
+  // //don't change anything else!
+
+  mesh.receiveShadow = true;
+  scene.add(mesh);
+}
+
+function createMeganDoor() {
   const geometry = new THREE.PlaneBufferGeometry(27, 30, 0, 0);
   const textureLoader = new THREE.TextureLoader();
   const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
@@ -394,59 +469,21 @@ function createSoumyaDoor2() {
   });
 
   const mesh = new THREE.Mesh(geometry, material);
-
+  mesh.userData = {URL:'https://AngerEmpathy.github.io'};
   //change these values to get the door to appear in the correct space
-  mesh.rotation.x =  180;
-  mesh.rotation.y =  -41.26;
-  mesh.rotation.z =  180;
-  mesh.position.x = 42.51;
-  mesh.position.y = 18.823;
-  mesh.position.z = 93.976;
+  // mesh.rotation.x =  180;
+  // mesh.rotation.y =  34.22;
+  // mesh.rotation.z =  180;
+  // mesh.position.x = 7.344;
+  // mesh.position.y = 18.823;
+  // mesh.position.z = 99.607;
   //don't change anything else!
 
   // //change these values to get the door to appear in the correct space
-  // mesh.rotation.y =  120;
-  // mesh.position.x = -100;
-  // mesh.position.y = 20;
-  // mesh.position.z = -57;
-  // //don't change anything else!
-
-  mesh.receiveShadow = true;
-  scene.add(mesh);
-}
-
-function createSoumyaDoor3() {
-  const geometry = new THREE.PlaneBufferGeometry(27, 30, 0, 0);
-  const textureLoader = new THREE.TextureLoader();
-  const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
-    texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-  });
-  // texture.repeat.set(5, 5);
-  texture.encoding = THREE.sRGBEncoding;
-  texture.anisotropy = 16;
-
-  const material = new THREE.MeshStandardMaterial({
-    map: texture,
-    bumpMap: texture,
-    // bumpScale: 5,
-  });
-
-  const mesh = new THREE.Mesh(geometry, material);
-
-  //change these values to get the door to appear in the correct space
-  mesh.rotation.x =  180;
-  mesh.rotation.y =  34.22;
-  mesh.rotation.z =  180;
-  mesh.position.x = 7.344;
-  mesh.position.y = 18.823;
-  mesh.position.z = 99.607;
-  //don't change anything else!
-
-  // //change these values to get the door to appear in the correct space
-  // mesh.rotation.y =  221;
-  // mesh.position.x = -76;
-  // mesh.position.y = 20;
-  // mesh.position.z = -86;
+  mesh.rotation.y =  221;
+  mesh.position.x = -76;
+  mesh.position.y = 20;
+  mesh.position.z = -86;
   // //don't change anything else!
 
   mesh.receiveShadow = true;
@@ -456,7 +493,7 @@ function createSoumyaDoor3() {
 function createJonathanDoor() {
   const geometry = new THREE.PlaneBufferGeometry(16, 49, 0, 0);
   const textureLoader = new THREE.TextureLoader();
-  const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
+  const texture = textureLoader.load('textures/assemble-sjelin-Jonathan.jpg', function (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
   });
   // texture.repeat.set(5, 5);
@@ -470,7 +507,7 @@ function createJonathanDoor() {
   });
 
   const mesh = new THREE.Mesh(geometry, material);
-
+  mesh.userData = {URL:'https://jankyjon.github.io/gallery-project'};
   //change these values to get the door to appear in the correct space
   //mesh.rotation.y =  225;
 mesh.rotation.y =  14.98;
@@ -485,7 +522,7 @@ mesh.rotation.y =  14.98;
   scene.add(mesh);
 }
 
-function createJonathanDoor2() {
+function createYukiDoor() {
   const geometry = new THREE.PlaneBufferGeometry(16, 49, 0, 0);
   const textureLoader = new THREE.TextureLoader();
   const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
@@ -502,7 +539,7 @@ function createJonathanDoor2() {
   });
 
   const mesh = new THREE.Mesh(geometry, material);
-
+  //mesh.userData = {URL:….};
   //change these values to get the door to appear in the correct space
   //mesh.rotation.y =  160;
   mesh.rotation.y =  9.38;
@@ -516,10 +553,10 @@ function createJonathanDoor2() {
   scene.add(mesh);
 }
 
-function createJonathanDoor3() {
+function createLianaDoor() {
   const geometry = new THREE.PlaneBufferGeometry(16, 49, 0, 0);
   const textureLoader = new THREE.TextureLoader();
-  const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
+  const texture = textureLoader.load('textures/Liana.png', function (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
   });
   // texture.repeat.set(5, 5);
@@ -533,7 +570,7 @@ function createJonathanDoor3() {
   });
 
   const mesh = new THREE.Mesh(geometry, material);
-
+  mesh.userData = {URL:'https://lianaluxe.github.io/LearningThreeJS/ocean.html'};
   //change these values to get the door to appear in the correct space
   //mesh.rotation.y =  160;
   mesh.rotation.y =  75.99;
@@ -550,7 +587,7 @@ function createJonathanDoor3() {
 function createNikitaDoor() {
   const geometry = new THREE.PlaneBufferGeometry(16, 28, 0, 0);
   const textureLoader = new THREE.TextureLoader();
-  const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
+  const texture = textureLoader.load('textures/Nikita.jpg', function (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
   });
   // texture.repeat.set(5, 5);
@@ -564,15 +601,16 @@ function createNikitaDoor() {
   });
 
   const mesh = new THREE.Mesh(geometry, material);
-  mesh.rotation.y =  88.85;
+  mesh.userData = {URL:'https://nikigokhale.github.io/theres-hope-after-all/'};
 
+  mesh.rotation.y =  88.85;
   mesh.position.x = -94.545;
   mesh.position.y = 20.315;
   mesh.position.z = 17.872;
   mesh.receiveShadow = true;
   scene.add(mesh);
 }
-function createNikitaDoor2() {
+function createOwenDoor() {
   const geometry = new THREE.PlaneBufferGeometry(16, 28, 0, 0);
   const textureLoader = new THREE.TextureLoader();
   const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
@@ -589,15 +627,16 @@ function createNikitaDoor2() {
   });
 
   const mesh = new THREE.Mesh(geometry, material);
-  mesh.rotation.y =  57.24;
+  //mesh.userData = {URL:….}
 
+  mesh.rotation.y =  57.24;
   mesh.position.x = -103.598;
   mesh.position.y = 20.315;
   mesh.position.z = -21.073;
   mesh.receiveShadow = true;
   scene.add(mesh);
 }
-function createNikitaDoor3() {
+function createLuisDoor() {
   const geometry = new THREE.PlaneBufferGeometry(16, 28, 0, 0);
   const textureLoader = new THREE.TextureLoader();
   const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
@@ -614,8 +653,9 @@ function createNikitaDoor3() {
   });
 
   const mesh = new THREE.Mesh(geometry, material);
-  mesh.rotation.y =  47.38;
+  mesh.userData = {URL:'https://github.com/LuisRam-25/LuisRam-25.io'};
 
+  mesh.rotation.y =  47.38;
   mesh.position.x = -101.336;
   mesh.position.y = 20.315;
   mesh.position.z = -54.790;
@@ -624,9 +664,9 @@ function createNikitaDoor3() {
 }
 
 function createFengpingDoor() {
-  const geometry = new THREE.PlaneBufferGeometry(20, 50, 0, 0);
+  const geometry = new THREE.PlaneBufferGeometry(20, 40, 0, 0);
   const textureLoader = new THREE.TextureLoader();
-  const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
+  const texture = textureLoader.load('textures/Fengping.png', function (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
   });
   // texture.repeat.set(5, 5);
@@ -640,22 +680,18 @@ function createFengpingDoor() {
   });
 
   const mesh = new THREE.Mesh(geometry, material);
-  mesh.rotation.y =  58.44;
+  mesh.userData = {URL:'https://fengpingxiong.github.io/dream/'};
 
-  mesh.position.x = -73.768;
-  mesh.position.y = 20.315;
-  mesh.position.z = -80.226;
+  mesh.rotation.y =  180;
 
-  // mesh.rotation.y =  180;
-  //
-  // mesh.position.x = 127;
-  // mesh.position.y = 12;
-  // mesh.position.z = 37;
+  mesh.position.x = 127;
+  mesh.position.y = 20;
+  mesh.position.z = 37;
   mesh.receiveShadow = true;
   scene.add(mesh);
 }
 
-function createFengpingDoor2() {
+function createLynnDoor() {
   const geometry = new THREE.PlaneBufferGeometry(25, 40, 0, 0);
   const textureLoader = new THREE.TextureLoader();
   const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
@@ -664,30 +700,23 @@ function createFengpingDoor2() {
   // texture.repeat.set(5, 5);
   texture.encoding = THREE.sRGBEncoding;
   texture.anisotropy = 16;
-
   const material = new THREE.MeshStandardMaterial({
     map: texture,
     bumpMap: texture,
     // bumpScale: 5,
   });
-
   const mesh = new THREE.Mesh(geometry, material);
-  mesh.rotation.y =  6.22;
+  // mesh.userData = {URL:….}
+  mesh.rotation.y = -1.23;
 
-  mesh.position.x = -48.315;
-  mesh.position.y = 20.315;
-  mesh.position.z = -101.454;
-
-  // mesh.rotation.y = -1.23;
-  //
-  // mesh.position.x = 135;
-  // mesh.position.y = 20;
-  // mesh.position.z = 6;
+  mesh.position.x = 135;
+  mesh.position.y = 20;
+  mesh.position.z = 6;
   mesh.receiveShadow = true;
   scene.add(mesh);
 }
 
-function createFengpingDoor3() {
+function createNicholasDoor() {
   const geometry = new THREE.PlaneBufferGeometry(25, 40, 0, 0);
   const textureLoader = new THREE.TextureLoader();
   const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
@@ -702,17 +731,13 @@ function createFengpingDoor3() {
   });
 
   const mesh = new THREE.Mesh(geometry, material);
-  mesh.rotation.y =  -41.33;
+  mesh.userData = {URL:'https://NCulver20.github.io'};
 
-  mesh.position.x = -21.457;
-  mesh.position.y = 20.315;
-  mesh.position.z = -89.710;
+  mesh.rotation.y =  -0.5;
 
-  // mesh.rotation.y =  -0.5;
-  //
-  // mesh.position.x = 110;
-  // mesh.position.y = 18;
-  // mesh.position.z = -25;
+  mesh.position.x = 110;
+  mesh.position.y = 18;
+  mesh.position.z = -25;
   mesh.receiveShadow = true;
   scene.add(mesh);
 }
@@ -721,7 +746,7 @@ function createFengpingDoor3() {
 function createCharmiDoor() {
   const geometry = new THREE.PlaneBufferGeometry(25, 49, 0, 0);
   const textureLoader = new THREE.TextureLoader();
-  const texture = textureLoader.load('textures/data-3js.png', function (texture) {
+  const texture = textureLoader.load('textures/data-3js-Charmi.png', function (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
   });
   // texture.repeat.set(5, 5);
@@ -735,8 +760,9 @@ function createCharmiDoor() {
   });
 
   const mesh = new THREE.Mesh(geometry, material);
-  mesh.rotation.y =  15.34;
+  mesh.userData = {URL:'Data-Threejs.github.io'};
 
+  mesh.rotation.y =  15.34;
   mesh.position.x = 11.151;
   mesh.position.y = 20.315;
   mesh.position.z = -79.576;
@@ -744,7 +770,7 @@ function createCharmiDoor() {
   scene.add(mesh);
 }
 
-function createCharmiDoor2() {
+function createConnorDoor() {
   const geometry = new THREE.PlaneBufferGeometry(16, 28, 0, 0);
   const textureLoader = new THREE.TextureLoader();
   const texture = textureLoader.load('textures/data-3js.png', function (texture) {
@@ -761,8 +787,9 @@ function createCharmiDoor2() {
   });
 
   const mesh = new THREE.Mesh(geometry, material);
-  mesh.rotation.y =  13.48;
+  mesh.userData = {URL:'https://Connor-Final.github.io'};
 
+  mesh.rotation.y =  13.48;
   mesh.position.x = 69.834;
   mesh.position.y = 20.315;
   mesh.position.z = -92.714;
@@ -770,7 +797,7 @@ function createCharmiDoor2() {
   scene.add(mesh);
 }
 
-function createCharmiDoor3() {
+function createTerranceDoor() {
   const geometry = new THREE.PlaneBufferGeometry(16, 49, 0, 0);
   const textureLoader = new THREE.TextureLoader();
   const texture = textureLoader.load('textures/data-3js.png', function (texture) {
@@ -787,8 +814,9 @@ function createCharmiDoor3() {
   });
 
   const mesh = new THREE.Mesh(geometry, material);
-  mesh.rotation.y =  -64.03;
+  mesh.userData = {URL:'https://github.com/LabriolaArt-356/LabriolaArt-356.github.io'};
 
+  mesh.rotation.y =  -64.03;
   mesh.position.x = 83.905;
   mesh.position.y = 20.315;
   mesh.position.z = -81.919;
@@ -796,7 +824,7 @@ function createCharmiDoor3() {
   scene.add(mesh);
 }
 
-function createCharmiDoor4() {
+function createClaireDoor() {
   const geometry = new THREE.PlaneBufferGeometry(16, 49, 0, 0);
   const textureLoader = new THREE.TextureLoader();
   const texture = textureLoader.load('textures/data-3js.png', function (texture) {
@@ -813,8 +841,9 @@ function createCharmiDoor4() {
   });
 
   const mesh = new THREE.Mesh(geometry, material);
-  mesh.rotation.y =  -79.85;
+  //mesh.userData = {URL:….}
 
+  mesh.rotation.y =  -79.85;
   mesh.position.x = 86.994;
   mesh.position.y = 20.315;
   mesh.position.z = -48.446;
@@ -822,7 +851,7 @@ function createCharmiDoor4() {
   scene.add(mesh);
 }
 
-function createCharmiDoor5() {
+function createDanDoor() {
   const geometry = new THREE.PlaneBufferGeometry(16, 49, 0, 0);
   const textureLoader = new THREE.TextureLoader();
   const texture = textureLoader.load('textures/data-3js.png', function (texture) {
@@ -839,8 +868,9 @@ function createCharmiDoor5() {
   });
 
   const mesh = new THREE.Mesh(geometry, material);
-  mesh.rotation.y =  -31.20;
+  mesh.userData = {URL:'https://DrowningInPlastic.github.io'};
 
+  mesh.rotation.y =  -31.20;
   mesh.position.x = 108.167;
   mesh.position.y = 20.315;
   mesh.position.z = -20.440;
@@ -848,14 +878,6 @@ function createCharmiDoor5() {
   scene.add(mesh);
 }
 
-
-
-// function addDoors() {
-//   const geometry = new THREE.PlaneGeometry( 5, 20, 32 );
-//   const material = new THREE.MeshBasicMaterial( {color: 0xffff00, side: THREE.DoubleSide} );
-//   const plane = new THREE.Mesh( geometry, material );
-//   scene.add( plane );
-// }
 
 function createRenderer() {
 
