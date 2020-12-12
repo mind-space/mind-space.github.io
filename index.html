@@ -1,15 +1,25 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<title>MindSpace</title>
-			
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta charset="UTF-8" />
+  <head>
 
-		<!-- <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon"> -->
+    <title>Mind Space Gallery Design</title>
 
-		<link href="styles/main.css" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta charset="UTF-8" />
+
+    <link rel="icon" href="https://discoverthreejs.com/favicon.ico" type="image/x-icon">
+
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+
+    // discord chat widget
+    <script src="https://cdn.jsdelivr.net/npm/@widgetbot/crate@3" async defer>
+      new Crate({
+        server: '784273291308564501', // Mindspace
+        channel: '784273291308564504' // #general
+      })
+    </script>
 
     <!--
 
@@ -21,26 +31,31 @@
 
     -->
 
-		<script src="js/three.js-master/build/three.js"></script>
+    <script src="js/three.js-master/build/three.js"></script>
+		<script src="js/three.js-master/examples/js/controls/OrbitControls.js"></script>
+		<script src="js/three.js-master/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="js/three.js-master/examples/js/libs/dat.gui.min.js"></script>
+    <script src="js/three.js-master/examples/js/controls/PointerLockControls.js"></script>
 
-	</head>
 
-	<body>
+  </head>
 
-		<h1 class="title"><a href="https://mind-space.github.io/gallery/">MindSpace: To enter click here</a></h1>
-		
+  <body>
 
-		<div id="scene-container">
-			<!-- This div will hold our scene-->
-		</div>
+    <h1 class="title"><a href="https://discoverthreejs.com/"></a> </h1>
 
-		<!--
-			Finally, include the script that
-			runs your three.js app.
-		-->
+    <div id="scene-container">
+      <!-- This div will hold our scene-->
+    </div>
 
-		<script src="js/app.js"></script>
 
-	</body>
+    <!--
+      Finally, include the script that
+      runs your three.js app.
+    -->
+
+    <script src="js/gallery.js"></script>
+
+  </body>
 
 </html>

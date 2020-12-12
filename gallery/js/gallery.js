@@ -75,7 +75,7 @@ function init() {
   //createOwenDoor();
   createLuisDoor();
   createFengpingDoor();
-  createLynnDoor();
+  // createLynnDoor();
   createNicholasDoor();
   createCharmiDoor();
   createConnorDoor();
@@ -691,30 +691,30 @@ function createFengpingDoor() {
   scene.add(mesh);
 }
 
-function createLynnDoor() {
-  const geometry = new THREE.PlaneBufferGeometry(25, 40, 0, 0);
-  const textureLoader = new THREE.TextureLoader();
-  const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
-    texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-  });
-  // texture.repeat.set(5, 5);
-  texture.encoding = THREE.sRGBEncoding;
-  texture.anisotropy = 16;
-  const material = new THREE.MeshStandardMaterial({
-    map: texture,
-    bumpMap: texture,
-    // bumpScale: 5,
-  });
-  const mesh = new THREE.Mesh(geometry, material);
-  // mesh.userData = {URL:….}
-  mesh.rotation.y = -1.23;
-
-  mesh.position.x = 135;
-  mesh.position.y = 20;
-  mesh.position.z = 6;
-  mesh.receiveShadow = true;
-  scene.add(mesh);
-}
+// function createLynnDoor() {
+//   const geometry = new THREE.PlaneBufferGeometry(25, 40, 0, 0);
+//   const textureLoader = new THREE.TextureLoader();
+//   const texture = textureLoader.load('textures/ChrisTexture.png', function (texture) {
+//     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+//   });
+//   // texture.repeat.set(5, 5);
+//   texture.encoding = THREE.sRGBEncoding;
+//   texture.anisotropy = 16;
+//   const material = new THREE.MeshStandardMaterial({
+//     map: texture,
+//     bumpMap: texture,
+//     // bumpScale: 5,
+//   });
+//   const mesh = new THREE.Mesh(geometry, material);
+//   // mesh.userData = {URL:….}
+//   mesh.rotation.y = -1.23;
+//
+//   mesh.position.x = 135;
+//   mesh.position.y = 20;
+//   mesh.position.z = 6;
+//   mesh.receiveShadow = true;
+//   scene.add(mesh);
+// }
 
 function createNicholasDoor() {
   const geometry = new THREE.PlaneBufferGeometry(25, 40, 0, 0);
