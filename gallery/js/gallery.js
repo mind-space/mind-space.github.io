@@ -615,9 +615,9 @@ function createOwenDoor() {
   scene.add(mesh);
 }
 function createLuisDoor() {
-  const geometry = new THREE.PlaneBufferGeometry(20, 28, 0, 0);
+  const geometry = new THREE.PlaneBufferGeometry(24, 32, 0, 0);
   const textureLoader = new THREE.TextureLoader();
-  const texture = textureLoader.load('gallery/textures/ChrisTexture.png', function (texture) {
+  const texture = textureLoader.load('gallery/textures/luispicture.png', function (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
   });
   // texture.repeat.set(5, 5);
@@ -834,7 +834,7 @@ function createClaireDoor() {
 }
 
 function createDanDoor() {
-  const geometry = new THREE.PlaneBufferGeometry(25, 49, 0, 0);
+  const geometry = new THREE.PlaneBufferGeometry(25, 30, 0, 0);
   const textureLoader = new THREE.TextureLoader();
   const texture = textureLoader.load('gallery/textures/danfinalss-01.jpeg', function (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
@@ -854,7 +854,7 @@ function createDanDoor() {
 
   mesh.rotation.y =  -2.2;
   mesh.position.x = 67;
-  mesh.position.y = 16;
+  mesh.position.y = 20;
   mesh.position.z = 69;
   mesh.receiveShadow = true;
   scene.add(mesh);
