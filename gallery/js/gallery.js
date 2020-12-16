@@ -1,4 +1,3 @@
-// these need to be accessed inside more than one function so we'll declare them first
 let container;
 let camera;
 let controls;
@@ -7,6 +6,7 @@ let scene;
 let refractorySkybox;
 let PointerLockControls;
 let HTMLDOMElement;
+//let INTERSECTED;
 
 const mixers = [];
 
@@ -16,10 +16,12 @@ const mouse = new THREE.Vector2();
 function getUrl(intersect) {
   try {
     return intersect.object.userData.URL;
+
   } catch(err) {
     return false;
   }
 }
+
 
 function doStuffwithRaycaster() {
    raycaster.setFromCamera( mouse, camera );
@@ -192,8 +194,8 @@ function createSkybox() {
 
   refractorySkybox = new THREE.MeshPhongMaterial({
     envMap: skyboxTexture,
-    reflectivity: 0.8,
-    color: "white",
+    reflectivity: 0.3,
+    //color: "white",
     skinning: true
   })
 
@@ -204,7 +206,7 @@ function createSkybox() {
 
 function createCamera() {
   camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 1, 500);
-  camera.position.set(-9, 13, 40);
+  camera.position.set(-9, 33, 40);
   //camera.position.set(-0.19, 215, 1.65);
 
 }
@@ -216,7 +218,7 @@ function createControls() {
 
 function createLights() {
   // const mainLight = new THREE.DirectionalLight(0xaca3bf, -3); f0d8a1   0xe1ddeb
-  const mainLight = new THREE.DirectionalLight(0xaca3bf, -3);
+  const mainLight = new THREE.DirectionalLight(0xaca3bf, -1);
   mainLight.position.set(50, 100, 100);
   mainLight.castShadow = true;
   mainLight.shadow.mapSize.width = 50;
@@ -226,7 +228,7 @@ function createLights() {
   // const ambientLight = new THREE.HemisphereLight(0xddeeff, 0x0f0e0d, 12);
   // scene.add(ambientLight);
 
-  const ambientLight = new THREE.HemisphereLight(0xddeeff, 0x0f0e0d, 14);
+  const ambientLight = new THREE.HemisphereLight(0xddeeff, 0x0f0e0d, 4);
   scene.add(ambientLight);
 }
 
@@ -258,7 +260,7 @@ function loadGallery() {
   // load the first model. Each model is loaded asynchronously,
   // so don't make any assumption about which one will finish loading first
   const position = new THREE.Vector3(-9, 0, -10);
-  loader.load('gallery/models/seehalfthepicturegallery.gltf', gltf => onLoad(gltf, position, refractorySkybox), onProgress, onError);
+  loader.load('gallery/models/innerwall.gltf', gltf => onLoad(gltf, position, refractorySkybox), onProgress, onError);
 }
 
 function createGrass() {
