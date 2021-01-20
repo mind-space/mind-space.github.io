@@ -703,7 +703,7 @@ function createCharmiDoor() {
   });
 
   const mesh = new THREE.Mesh(geometry, material);
-  mesh.userData = {URL:'Data-Threejs.github.io'};
+  mesh.userData = {URL:'https://data-threejs.github.io'};
 
   mesh.rotation.y = 31.7;
   mesh.position.x = 11.151;
